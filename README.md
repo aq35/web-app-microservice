@@ -8,4 +8,6 @@ $ cd frontend<br>
 $ npm install<br>
 $ npm run dev<br>
 
+### バックエンド(側アプリ) (Python+Flask)
+
 ### バックエンド(認証系) (Python+Flask)
