@@ -1,6 +1,6 @@
 from flask import Flask, render_template
   
-# frontend(vite)
+# frontend (vite+vue)のリソースを渡すのが役目
 app = Flask(__name__, static_folder='../frontend/dist/assets', template_folder='../frontend/dist')
 from flask import Flask, render_template, send_from_directory
 
