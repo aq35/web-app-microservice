@@ -1,0 +1,12 @@
+version: "3"
+services:
+  backend-outside:
+    build: .
+    ports:
+      - "5001:5000"
+      - '3000:3000' #VITE
+    container_name: backend-outside
+    volumes:
+      - ./backend-outside:/usr/src/backend-outside
+      - ./frontend:/usr/src/frontend
+    command: flask run --host=0.0.0.0
