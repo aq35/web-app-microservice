@@ -1,11 +1,11 @@
-## マイクロサービス
+## マイクロサービスを開発します。
 
-あらかじめ、Docker Desktopを起動してください。
+Docker Desktopを起動してください。<br>
 $ docker-compose down && docker-compose build && docker-compose up -d
 
-$ フロントエンド (vue+vite)
-$ cd frontend
-$ npm install
-$ npm run dev
+### フロントエンド (vue+vite)
+$ cd frontend<br>
+$ npm install<br>
+$ npm run dev<br>
 
-$　 バックエンド(認証系) (Python+Flask)
+### バックエンド(認証系) (Python+Flask)
