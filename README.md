@@ -1,10 +1,10 @@
 ## マイクロサービスを開発します。
 
 構成:Python(Flask)+Vue3(Vite)<br>
-あらかじめ、Docker Desktopを起動してください。<br>
-$ docker-compose down && docker-compose build && docker-compose up -d
+$ docker-compose down && docker-compose build && docker-compose up -d<br>
+$ docker-compose build --no-cache
 
-### フロントエンド (Vue+Vite)
+## フロントエンド (Vue+Vite)のセットアップ
 $ cd frontend<br>
 $ npm install<br>
 $ npm run dev<br>

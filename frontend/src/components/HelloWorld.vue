@@ -4,6 +4,27 @@ import { ref } from 'vue'
 defineProps<{ msg: string }>()
 
 const count = ref(0)
+
+const HOST = 'http://0.0.0.0:5001'
+const onPostButtonClick = async () => {
+  let user = {
+  name: 'John',
+  surname: 'Smith'
+};
+
+let response = await fetch(HOST+'/api/user', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json;charset=utf-8'
+  },
+  body: JSON.stringify(user)
+});
+
+let result = await response.json();
+console.log(result);
+
+}
+
 </script>
 
 <template>
@@ -29,6 +50,8 @@ const count = ref(0)
     in your IDE for a better DX
   </p>
   <p class="read-the-docs">Click on the Vite and Vue logos to learn more</p>
+
+  <button type="button" @click="onPostButtonClick">POST(fetch)</button>
 </template>
 
 <style scoped>
