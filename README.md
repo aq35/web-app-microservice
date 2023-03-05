@@ -1,6 +1,6 @@
 ## マイクロサービスを開発します。
 
-Docker Desktopを起動してください。<br>
+あらかじめ、Docker Desktopを起動してください。<br>
 $ docker-compose down && docker-compose build && docker-compose up -d
 
 ### フロントエンド (vue+vite)
