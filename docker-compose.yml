@@ -1,22 +1,23 @@
 version: "3"
 services:
-  backend-outside:
+  app-outside:
     build: 
       context: .
       dockerfile: ./backend-outside/Dockerfile
     ports:
       - "5001:5000"
-    container_name: backend-outside
+    container_name: app-outside
     volumes:
-      - ./backend-outside:/usr/src/backend-outside
+      - ./backend-outside:/usr/src/app
       - ./frontend:/usr/src/frontend
     command: flask run --host=0.0.0.0
-  backend-auth:
+  app-auth:
     build: 
       context: .
       dockerfile: ./backend-auth/Dockerfile
     ports:
-      - "5101:5100"
-    container_name: backend-auth
+      - "6001:6000"
+    container_name: app-auth
     volumes:
-      - ./backend-auth:/usr/src/backend-auth
+      - ./backend-auth:/usr/src/app
+    command: flask run --host=0.0.0.0
