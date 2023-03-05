@@ -1,5 +1,6 @@
 ## マイクロサービスを開発します。
 
+構成:Python(Flask)+Vue3(Vite)<br>
 あらかじめ、Docker Desktopを起動してください。<br>
 $ docker-compose down && docker-compose build && docker-compose up -d
 

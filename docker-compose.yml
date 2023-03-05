@@ -1,5 +1,6 @@
 version: "3"
 services:
+  # ガワアプリ
   app-outside:
     build: 
       context: .
@@ -11,6 +12,7 @@ services:
       - ./backend-outside:/usr/src/app
       - ./frontend:/usr/src/frontend
     command: flask run --host=0.0.0.0
+  # 認証バックエンド
   app-auth:
     build: 
       context: .
