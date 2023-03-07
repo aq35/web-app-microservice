@@ -5,7 +5,7 @@ defineProps<{ msg: string }>()
 
 const count = ref(0)
 
-const HOST = 'http://0.0.0.0:5001'
+const HOST = 'http://localhost:80'
 const onPostButtonClick = async () => {
   let user = {
   name: 'John',

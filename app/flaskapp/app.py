@@ -26,7 +26,7 @@ def assets_resource(filename):
 # WEB-API定義
 @app.route('/api/user', methods=['POST'])
 def get_user():
-    return jsonify({"message": "python"})
+    return jsonify({"message": "python43"})
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)

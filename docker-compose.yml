@@ -1,25 +1,22 @@
 version: "3"
 services:
-  # ガワアプリ
-  app-outside:
-    build: 
-      context: .
-      dockerfile: ./backend-outside/Dockerfile
-    ports:
-      - "5001:5000"
-    container_name: app-outside
+  app:
+    build: ./app
     volumes:
-      - ./backend-outside:/usr/src/app
-      - ./frontend:/usr/src/frontend
-    command: flask run --host=0.0.0.0
-  # 認証バックエンド
-  app-auth:
-    build: 
-      context: .
-      dockerfile: ./backend-auth/Dockerfile
+      # - ./app/flaskapp:/app
+      - socket:/tmp
+      - type: bind
+        source: ./app/flaskapp
+        target: /app
+    command: uwsgi --ini /app/app.ini
+
+  web:
+    image: nginx:latest
     ports:
-      - "6001:6000"
-    container_name: app-auth
+      - "80:80"
     volumes:
-      - ./backend-auth:/usr/src/app
-    command: flask run --host=0.0.0.0
+      - ./web/nginx.conf:/etc/nginx/conf.d/default.conf
+      - socket:/tmp
+
+volumes:
+  socket:
