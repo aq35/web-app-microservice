@@ -3,7 +3,6 @@ services:
   app:
     build: ./app
     volumes:
-      # - ./app/flaskapp:/app
       - socket:/tmp
       - type: bind
         source: ./app/flaskapp
