@@ -17,6 +17,7 @@ def after_request(response):
     response.headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS")
     return response
 
+
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def index(path):
