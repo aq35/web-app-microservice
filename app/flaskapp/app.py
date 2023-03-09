@@ -17,17 +17,6 @@ def after_request(response):
     response.headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS")
     return response
 
-
-# [black]自動フォーマット
-# @app.after_request
-# def after_request(response):
-#     if response.content_type.startswith("text/html"):
-#         response.set_data(
-#             format_str(response.get_data(as_text=True), mode=FileMode())
-#         )
-#     return response
-
-
 @app.route("/", defaults={"path": ""})
 @app.route("/<path:path>")
 def index(path):
