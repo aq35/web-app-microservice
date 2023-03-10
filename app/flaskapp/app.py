@@ -28,12 +28,12 @@ def index(path):
 
 @app.route("/<path:filename>", methods=["GET"])
 def resource(filename):
-    return send_from_directory("../frontend/dist", filename)
+    return send_from_directory("./frontend/dist", filename)
 
 
 @app.route("/assets/<path:filename>", methods=["GET"])
 def assets_resource(filename):
-    return send_from_directory("../frontend/dist/assets", filename)
+    return send_from_directory("./frontend/dist/assets", filename)
 
 
 # WEB-API定義

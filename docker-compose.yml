@@ -1,6 +1,7 @@
 version: "3"
 services:
   app:
+    container_name: ${APP_CONTAINER_NAME}
     build: ./app
     volumes:
       - socket:/tmp
@@ -10,6 +11,7 @@ services:
     command: uwsgi --ini /app/app.ini
 
   web:
+    container_name: ${WEB_SERVER_CONTAINER_NAME}
     image: nginx:latest
     ports:
       - "80:80"

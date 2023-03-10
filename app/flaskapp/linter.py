@@ -1,6 +1,5 @@
 import os
 
-
 def run_linters():
     # Mypy静的型チェック
     os.system("mypy .")

@@ -13,6 +13,9 @@ $ npm run dev<br>
 
 ### バックエンド+REST API(認証系) (Python+Flask)
 
+### Docker,Docker-Compose
+複数のシェルスクリプトを一度に全て有効にする
+$ chmod +x *.sh
 
-
-# ./docker.sh web-app_app python linter.py         
+./dc.sh 対話式Docker-Compose操作
+./docker.sh Dockerコンテナ内
