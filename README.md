@@ -14,3 +14,5 @@ $ npm run dev<br>
 ### バックエンド+REST API(認証系) (Python+Flask)
 
 
+
+# ./docker.sh web-app_app python linter.py         

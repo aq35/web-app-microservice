@@ -1,7 +1,6 @@
 import os
 
 
-# ./docker.sh web-app_app python linter.py         
 def run_linters():
     # Mypy静的型チェック
     os.system("mypy .")
@@ -14,6 +13,8 @@ def run_linters():
 
     # Flake8コード品質チェック
     os.system("flake8 .")
+    
+    if __name__ == "__main__":
+        run_linters()
 
-if __name__ == "__main__":
-    run_linters()
+# 空行を追加
