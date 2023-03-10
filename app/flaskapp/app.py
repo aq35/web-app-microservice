@@ -1,20 +1,22 @@
-from flask import Flask, render_template, send_from_directory, jsonify, request
+from flask import Flask, render_template, send_from_directory, jsonify
 from flask_cors import CORS
-from black import format_str, FileMode
-
 
 # frontend (vite+vue)のリソースを渡すのが役目
-app = Flask(
-    __name__, static_folder="./frontend/dist/assets", template_folder="./frontend/dist"
-)
+app = Flask(__name__)
+app.static_folder = "./frontend/dist/assets"
+app.template_folder = "./frontend/dist"
 
 CORS(app, origins=["http://localhost:5173"])  # CORS 対応
 
 
 @app.after_request
 def after_request(response):
-    response.headers.add("Access-Control-Allow-Headers", "Content-Type,Authorization")
-    response.headers.add("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE,OPTIONS")
+    response.headers.update(
+        {
+            "Access-Control-Allow-Headers": "Content-Type, Authorization",
+            "Access-Control-Allow-Methods": "GET,PUT,POST,DELETE,OPTIONS",
+        }
+    )
     return response
 
 
