@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory, jsonify
+from flask import Flask, jsonify, render_template, send_from_directory
 from flask_cors import CORS
 
 # frontend (vite+vue)のリソースを渡すのが役目

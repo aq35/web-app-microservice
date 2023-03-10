@@ -4,4 +4,6 @@
 # 以下を実行すると、整形コマンドになる
 # ./docker.sh web-app_app black app.py
 # ./docker.sh web-app_app flake8 app.py
+# ./docker.sh web-app_app isort app.py
+# ./docker.sh web-app_app ./app/flaskapp/optimize_code.py
 docker exec $(docker ps -aqf "name=$1") ${@:2}
