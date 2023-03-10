@@ -10,7 +10,7 @@ read -p "(1,2)を選択してください。: " choice
 
 case $choice in
   1)
-    ./docker-exec.sh $APP_CONTAINER_NAME python linter.py
+    ./docker-exec.sh $APP_CONTAINER_NAME python3 linter.py
     ;;
   2)
     ./docker-exec.sh $APP_CONTAINER_NAME ls
