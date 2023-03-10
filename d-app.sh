@@ -4,8 +4,8 @@
 source .env
 
 echo $APP_CONTAINER_NAME"コンテナを操作したい"
-echo "1. linter.py 実行"
-echo "2. app内 ls 実行"
+echo "1. linter.py 実行 (品質向上コマンドを実行します。)"
+echo "2. コンテナ内 ls 実行"
 read -p "(1,2)を選択してください。: " choice
 
 case $choice in
