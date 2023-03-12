@@ -42,5 +42,8 @@ def get_user():
     return jsonify({"message": "aa43"})
 
 
+# ルート定義
+app.add_url_rule('/api/user', view_func=get_user, endpoint='get_user')
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80, debug=True)
