@@ -1,6 +1,10 @@
 # UserService.py
+from typing import List
+
 
 class UserService:
+    users: List[dict] = []
+
     def __init__(self):
         self.users = []
 
@@ -9,5 +13,5 @@ class UserService:
         self.users.append(user)
         return user
 
-    def get_users(self) -> list[dict]:
+    def get_users(self) -> List[dict]:
         return self.users

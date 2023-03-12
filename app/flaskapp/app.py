@@ -2,7 +2,7 @@ from flask import Flask, render_template, send_from_directory
 from flask_cors import CORS
 
 from helper import app_json_response
-from UserService import UserService
+from Service.UserService import UserService
 
 # frontend (vite+vue)のリソースを渡すのが役目
 app = Flask(__name__)
@@ -43,8 +43,8 @@ def assets_resource(filename):
 @app.route("/api/user", methods=["POST"])
 def get_user():
     user_service = UserService()
-    user_service.create_user('John', 'john@example.com')
-    return app_json_response(user_service.get_users())
+    user = user_service.create_user('John', 'john@example.com')
+    return app_json_response(user)
 
 
 # ルート定義
