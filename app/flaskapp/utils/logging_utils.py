@@ -1,9 +1,14 @@
+import os
 import logging
 from logging.handlers import RotatingFileHandler
 from datetime import datetime
 
+# 出力するディレクトリの指定
+log_dir = "./storage/logs"
+
+# ログファイル名の設定
 today = datetime.now().strftime("%Y-%m-%d")
-filename = f"app_{today}.log"
+filename = os.path.join(log_dir, f"app_{today}.log")
 
 # ログファイルの設定
 handler = RotatingFileHandler(filename, maxBytes=10000, backupCount=1)

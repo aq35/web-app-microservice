@@ -1,6 +1,6 @@
 from flask import Flask, render_template, send_from_directory, request, session
 from flask_cors import CORS
-from logging_utils import logger
+from utils.logging_utils import logger
 from helper import app_json_response
 from Service.UserService import UserService
 
