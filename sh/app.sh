@@ -5,7 +5,7 @@ source .env
 
 echo $APP_CONTAINER_NAME"コンテナを操作したい"
 echo "1. py品質向上ツールを実行する"
-echo "2. ls実行"
+echo "2. ls 実行"
 read -p "(1,2)を選択してください。: " choice
 
 case $choice in
