@@ -6,10 +6,16 @@ services:
     volumes:
       - socket:/tmp
       - type: bind
-        source: ./app/flaskapp
+        source: ./app/flask-tutorial
         target: /app
-    command: uwsgi --ini /app/app.ini
-
+    # command: uwsgi --ini /app/app.ini
+    depends_on:
+      - db
+  db:
+    container_name: ${DB_CONTAINER_NAME}
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
   web:
     container_name: ${WEB_SERVER_CONTAINER_NAME}
     image: nginx:latest
