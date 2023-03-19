@@ -2,6 +2,7 @@ flask==2.0.1
 types-Flask
 Flask-Cors>=3.0
 types-Flask-Cors
+python-dotenv
 # uwsgi>=2.0.19.1
 black>=21.12b0
 flake8>=3.9.2
@@ -9,3 +10,5 @@ isort>=5.9.3
 mypy>=0.910
 pytest
 coverage
+flask-sqlalchemy
+flask-migrate

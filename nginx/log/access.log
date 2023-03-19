@@ -1,0 +1,5 @@
+172.25.0.1 - - [19/Mar/2023:19:21:52 +0000] "GET /static/style.css HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+172.25.0.1 - - [19/Mar/2023:22:10:58 +0000] "GET /static/style.css HTTP/1.1" 304 0 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+172.25.0.1 - - [19/Mar/2023:22:10:58 +0000] "GET / HTTP/1.1" 200 427 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+172.25.0.1 - - [19/Mar/2023:22:10:58 +0000] "GET /static/style.css HTTP/1.1" 200 1536 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"
+172.25.0.1 - - [19/Mar/2023:22:10:58 +0000] "GET /favicon.ico HTTP/1.1" 404 207 "http://localhost/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36"

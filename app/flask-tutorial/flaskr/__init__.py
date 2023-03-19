@@ -2,6 +2,7 @@ import os
 
 from flask import Flask
 
+
 def create_app(test_config=None):
     # Flaskインスタンスを作成します。
     app = Flask(__name__, instance_relative_config=True)
@@ -41,5 +42,5 @@ def create_app(test_config=None):
     from . import blog
     app.register_blueprint(blog.bp)
     app.add_url_rule('/', endpoint='index')
-
+    
     return app

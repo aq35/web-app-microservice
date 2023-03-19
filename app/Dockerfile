@@ -6,8 +6,9 @@ COPY ./flask-tutorial/ ./
 
 RUN pip3 install -r requirements.txt
 
-ENV FLASK_APP=flaskr.__init__
-ENV FLASK_ENV=development
+## python-dotenvによりアプリケーション直下に.envがあればENVを読み込んでくれるようになったため、コメントアウト
+## ENV FLASK_APP=flaskr.__init__
+## ENV FLASK_ENV=development
 
 CMD ["flask", "init-db"]
 # ホストを127.0.0.1にすると、Nigixの可変なIPアドレスに対応できない
