@@ -30,6 +30,10 @@ http://localhost/
 
 ### 502 Bad Gateway エラー が起きた場合
 
+カスタマイズしようとして、502 Bad Gateway エラーになった場合、修正漏れがあるのかもしれません。
+
+nginxやdocker-compose.ymlに少しずつ慣れていきましょう。
+
 #### Flaskアプリケーションが正常に起動しているかどうか
 
 ```bash
