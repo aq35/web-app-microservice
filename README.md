@@ -1,44 +1,47 @@
-## マイクロサービスを開発します。
+## サーバーレス,マイクロサービス,デスクトップアプリ,Docker環境
 
-構成:Python(Flask)+Vue3(Vite)<br>
-$ docker-compose down && docker-compose build && docker-compose up -d<br>
-$ docker-compose build --no-cache
+Python[FW:Flask] を通して、WEBでもデスクトップアプリでも応用できるコード資産を作っていくことが目的です。
+## Authors
 
-## フロントエンド (Vue+Vite)のセットアップ
-$ cd frontend<br>
-$ npm install<br>
-$ npm run dev<br>
+- [@aq35](https://www.github.com/aq35)
 
-### バックエンド(側アプリ) (Python+Flask)
 
-### バックエンド+REST API(認証系) (Python+Flask)
+## Installation
 
-### Docker,Docker-Compose
-複数のシェルスクリプトを一度に全て有効にする
-$ chmod +x *.sh
+Docker(nginx+Flask)で開発環境を構築する
 
-./dc.sh 対話式Docker-Compose操作
-./docker.sh Dockerコンテナ内
+```bash
+chmod +x ./sh/dc.sh
+./sh/dc.sh
+2 → 1 の順番で実行してください。
+echo "1. まとめてコンテナ起動したい"
+echo "2. まとめてコンテナビルドしたい(ビルド時にキャッシュは使用しない)"
 
-## Flaskアプリケーションが正常に起動しているかどうかを確認するために、次のコマンドを実行してください。
+```
+http://localhost/
+
+
+
+
+    
+## FAQ
+
+### 502 Bad Gateway エラー が起きた場合
+
+#### Flaskアプリケーションが正常に起動しているかどうか
+
+```bash
 docker-compose logs myapp
 以下ならOK
 myapp_1  |  * Running on http://0.0.0.0:5000/ (Press CTRL+C to quit)
+```
 
-upstream設定が正しいかどうか
-location設定が正しいかどうか
+#### nginx.confは、正しくセットされているか？
 
-## Nginxのログを確認して、どのような問題があるかを確認することができます。次のコマンドを実行して、Nginxのログを確認してください。
-docker-compose logs myapp-nginx
-
-docker-compose logs myapp-nginx の出力結果を見る限り、nginxのコンテナは起動しているようです。そのため、問題はFlaskのコンテナにある可能性が高いです。
-
-Flaskが起動している場合は、次にnginxの設定を確認してください。
 docker-compose.yml ファイルで定義した myapp-nginx コンテナの設定ファイル nginx.conf に、Flaskアプリケーションへのアクセスが適切に設定されていることを確認してください。
-特に、upstream ディレクティブと location ディレクティブについて、正しく設定されているかどうかを確認してください。
 
-docker-compose exec myapp-nginx /bin/bash
-cat /etc/nginx/nginx.conf
+特に、upstream ディレクティブと location ディレクティブについて、正しく設定されているかどうかを確認してください。
+```bash
 upstreamディレクティブが正しく設定されていることを確認します。以下のような行があるはずです。
 upstream app_server {
     server myapp:5000;
@@ -48,41 +51,76 @@ location / {
     proxy_pass http://app_server;
 }
 
-設定ファイルを保存してNginxを再起動します。
-service nginx restart
-
-502 Bad Gateway エラーが発生するのは、NginxがupstreamのFlaskアプリケーションに接続できなかった場合です。アプリケーションがコンテナ内でcurlできたことから、Nginxの設定に問題があると考えられます。以下のことを確認してみてください。
-
-1.NginxコンテナとFlaskコンテナが同じネットワークに所属していることを確認してください。
-networks:
-  my_network:
-2.Flaskアプリケーションのポート番号が5000番であることを確認してください。
-    ports:
-      - "5000:5000"
-3.Nginxの設定ファイルで、upstreamで指定するFlaskアプリケーションの名前が、Docker Composeファイルで定義されているサービス名と一致していることを確認してください。
-
-Docker Composeファイルを開き、Flaskアプリケーションのサービス名を確認します。例えば、以下のような設定の場合、サービス名は「myapp」となります。
+＊　server myapp:5000;は、docker-compose.ymlの「myapp」です。
+docker-compose.yml
 services:
   myapp:
     build: ./app
-
-upstream myapp {
-    server myapp:5000;
-}
-
-server {
-    listen 80;
-    server_name localhost;
-    
-    location / {
-        proxy_pass http://myapp;
-    }
-}
-4.Nginxの設定ファイルで、locationで指定するURLパスが、Flaskアプリケーションで処理するURLパスと一致していることを確認してください。
-5.Nginxコンテナのログを確認して、何らかのエラーメッセージがあるかどうか確認してください。
+    container_name: ${APP_CONTAINER_NAME}
+```
 
 
-全部が正しい場合、多分。自力で解ける問題と考える。
-ポートは正しいがIPは正しいか？
-nginxがアップストリームしたIPは、確かにコンテナに届いたが127.0.0.1であった。
-「Docker」でアプリ自体を起動するにはポートが0.0.0.0である必要がある。
+#### ログを見てみよう
+
+nginxのログ
+
+```bash
+docker-compose exec myapp-nginx /bin/bash
+ls /var/log/nginx/
+access.log
+error.log
+
+or
+
+./web-app/nginx/log
+access.log
+error.log
+```
+
+flaskのログ
+
+```bash
+docker-compose logs myapp
+```
+
+#### flaskアプリ Dockerfileを見てみよう
+
+```bash
+web-app/app/Dockerfile
+
+ここから
+FROM python:3.8-slim-buster
+
+WORKDIR app
+
+COPY ./flask-tutorial/ ./
+
+RUN pip3 install -r requirements.txt
+
+ENV FLASK_APP=flaskr.__init__
+ENV FLASK_ENV=development
+
+CMD ["flask", "init-db"]
+# ホストを127.0.0.1にすると、Nigixの可変なIPアドレスに対応できない
+# --host=0.0.0.0は、全てのIPを受け入れます。
+# * Docker使わない場合は、127.0.0.1を使いましょう。
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+#export FLASK_APP=flaskr
+#export FLASK_ENV=development
+#flask init-db
+#flask run
+
+ここまで
+
+CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
+が
+CMD ["flask", "run"]の場合、
+127.0.0.1がflaskアプリサーバーのポートに割り当てられる
+
+nginx.confのproxy_passは、127.0.0.1とは限らない。
+proxy_pass http://app_server;
+なので、flask側も"--host=0.0.0.0"をつけることで、IPを全許可にする。
+* コンテナ自体がIPフィルターしているため、アプリはIPフィルターを考えなくて良い。
+
+```
+
