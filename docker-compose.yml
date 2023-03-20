@@ -9,6 +9,8 @@ services:
       - "5000:5000"
     networks:
       - my_network
+    volumes:
+    - ./app/flask-tutorial:/app
   myapp-nginx:
     image: nginx:latest
     ports:
