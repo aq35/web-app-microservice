@@ -3,7 +3,10 @@ from flask import (
     Blueprint, flash,
     redirect, render_template,
     request, url_for, flash, session,
+    current_app
 )
+
+from flask_mail import Message
 
 # メールバリデーション拡張:email-validator
 from email_validator import EmailNotValidError, validate_email
@@ -11,7 +14,6 @@ from email_validator import EmailNotValidError, validate_email
 from flaskr.auth import login_required
 
 bp = Blueprint('contact', __name__)
-
 
 @bp.route('/contact', methods=('GET', 'POST'))
 @login_required
@@ -54,7 +56,15 @@ def contact_complete():
             session['email'] = email
             session['description'] = description
             return redirect(url_for("contact.create"))
-
+        
+        mail = current_app.extensions['mail']
+        subject = 'お問合せ'
+        recipients = [email]
+        body = description
+        msg = Message(subject=subject, recipients=recipients)
+        msg.body = body
+        mail.send(msg)
+        
         # 問い合わせ完了エンドポイントへリダイレクトする
         flash("問い合わせ内容はメールにて送信しました。問い合わせありがとうございます。")
 
@@ -63,12 +73,3 @@ def contact_complete():
     return render_template("contact/complete.html")
 
 
-@bp.route('/contact')
-def contact():
-    subject = 'Hello from Flask'
-    recipients = ['recipient@example.com']
-    body = 'This is a test email sent from Flask!'
-    msg = Message(subject=subject, recipients=recipients)
-    msg.body = body
-    mail.send(msg)
-    return 'Email sent!'
