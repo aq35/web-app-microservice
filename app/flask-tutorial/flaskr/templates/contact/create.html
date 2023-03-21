@@ -10,19 +10,19 @@
         <tr>
             <td>ユーザ名</td>
             <td>
-                <input type="text" name="username" value="{{ request.args.get('username', '') }}" placeholder="ユーザ名" />
+                <input type="text" name="username" value="{{ session.get('username', '') }}" placeholder="ユーザ名" />
             </td>
         </tr>
         <tr>
             <td>メールアドレス</td>
             <td>
-                <input type="text" name="email" value="{{ request.args.get('email', '') }}" placeholder="メールアドレス" />
+                <input type="text" name="email" value="{{ session.get('email', '') }}" placeholder="メールアドレス" />
             </td>
         </tr>
         <tr>
             <td>問い合わせ内容</td>
             <td>
-                <textarea name="description" placeholder="問い合わせ内容">{{  request.args.get('description', '') }}</textarea>
+                <textarea name="description" placeholder="問い合わせ内容">{{  session.get('description', '') }}</textarea>
             </td>
         </tr>
     </table>

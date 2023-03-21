@@ -1,6 +1,6 @@
 import os
 from flask import (
-    Blueprint, flash, redirect, render_template, request, url_for, flash
+    Blueprint, flash, redirect, render_template, request, url_for, flash, session
 )
 # メール送信拡張:flask-mail
 from flask_mail import Mail, Message
@@ -50,6 +50,9 @@ def contact_complete():
             is_valid = False
 
         if not is_valid:
+            session['username'] = username
+            session['email'] = email
+            session['description'] = description
             return redirect(url_for("contact.create"))
 
         # 問い合わせ完了エンドポイントへリダイレクトする
