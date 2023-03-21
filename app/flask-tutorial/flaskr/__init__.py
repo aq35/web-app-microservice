@@ -3,6 +3,7 @@ import os
 from flask import (
     Flask, current_app,  
 )
+
 from flask_mail import (
     Message, Mail
 )
