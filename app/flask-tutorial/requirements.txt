@@ -10,5 +10,9 @@ isort>=5.9.3
 mypy>=0.910
 pytest
 coverage
+# メール送信拡張:flask-mail
+flask-mail
+# メールバリデーション拡張:email-validator
+email-validator
 flask-sqlalchemy
 flask-migrate

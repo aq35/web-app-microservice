@@ -5,8 +5,8 @@ source .env
 
 echo $APP_CONTAINER_NAME"コンテナを操作したい"
 echo "1. py品質向上ツールを実行する"
-echo "2. データベースの初期化"
-echo "3. flaskのルーティング"
+echo "2. flaskのルーティング"
+echo "3. データベースの初期化"
 echo "4. ls 実行"
 echo "5. アプリ 起動"
 read -p "(1,2,3,4,5)を選択してください。: " choice
