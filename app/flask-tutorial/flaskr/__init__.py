@@ -1,6 +1,13 @@
 import os
 
-from flask import Flask
+from flask import (
+    Flask, current_app,  
+)
+from flask_mail import (
+    Message, Mail
+)
+
+mail = Mail()
 
 
 def create_app(test_config=None):
@@ -19,6 +26,16 @@ def create_app(test_config=None):
     else:
         # appが使用する標準設定をいくつか設定します。
         app.config.from_mapping(test_config)
+
+    # [flask-mail]
+    app.config["MAIL_SERVER"] = os.environ.get("MAIL_SERVER")
+    app.config["MAIL_PORT"] = os.environ.get("MAIL_PORT")
+    app.config["MAIL_USE_TLS"] = os.environ.get("MAIL_USE_TLS")
+    app.config["MAIL_USERNAME"] = os.environ.get("MAIL_USERNAME")
+    app.config["MAIL_PASSWORD"] = os.environ.get("MAIL_PASSWORD")
+    app.config["MAIL_DEFAULT_SENDER"] = os.environ.get("MAIL_DEFAULT_SENDER")
+
+    mail.init_app(app)
 
     # Flaskはインスタンスフォルダを自動的には作成しませんが、
     # このプロジェクトではそこにSQLiteデータベースファイルを作成するために
@@ -46,6 +63,7 @@ def create_app(test_config=None):
     app.register_blueprint(blog.bp)
     app.add_url_rule("/", endpoint="index")
 
+    # 問い合わせ
     from . import contact
 
     app.register_blueprint(contact.bp)

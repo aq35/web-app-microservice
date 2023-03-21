@@ -1,9 +1,9 @@
 import os
 from flask import (
-    Blueprint, flash, redirect, render_template, request, url_for, flash, session
+    Blueprint, flash,
+    redirect, render_template,
+    request, url_for, flash, session,
 )
-# メール送信拡張:flask-mail
-from flask_mail import Mail, Message
 
 # メールバリデーション拡張:email-validator
 from email_validator import EmailNotValidError, validate_email
@@ -63,9 +63,12 @@ def contact_complete():
     return render_template("contact/complete.html")
 
 
-def send_email(to, subject, template, **kwargs):
-    """メールを送信する関数"""
-    # msg = Message(subject, recipients=[to])
-    # msg.body = render_template(template + ".txt", **kwargs)
-    # msg.html = render_template(template + ".html", **kwargs)
-    # mail.send(msg)
+@bp.route('/contact')
+def contact():
+    subject = 'Hello from Flask'
+    recipients = ['recipient@example.com']
+    body = 'This is a test email sent from Flask!'
+    msg = Message(subject=subject, recipients=recipients)
+    msg.body = body
+    mail.send(msg)
+    return 'Email sent!'
