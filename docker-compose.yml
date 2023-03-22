@@ -11,6 +11,10 @@ services:
       - my_network
     volumes:
     - ./app/flask-tutorial:/app
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    depends_on:
+      - mysql    
   myapp-nginx:
     image: nginx:latest
     ports:
@@ -23,5 +27,36 @@ services:
       - myapp
     networks:
       - my_network
+    depends_on:
+      - mysql    
+    networks:
+      - my_network
+  # [mysql]
+  mysql:
+    image: mysql:latest
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - MYSQL_DATABASE=${MYSQL_DATABASE}
+    volumes:
+      - ./mysql:/var/lib/mysql
+    networks:
+      - my_network
+  # [phpmyadmin] 開発環境専用
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin-web_app
+    restart: always
+    ports:
+      - "8080:80"
+    environment:
+      - PMA_HOST=mysql
+      - PMA_USER=root
+      - PMA_PASSWORD=password
+    networks:
+      - my_network      
 networks:
   my_network:

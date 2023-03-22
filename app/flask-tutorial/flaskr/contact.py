@@ -1,13 +1,11 @@
-import os
 from flask import (
     Blueprint, flash,
     redirect, render_template,
-    request, url_for, flash, session,
+    request, url_for, session,
     current_app
 )
 
 from flask_mail import Message
-from smtplib import SMTPException
 
 # メールバリデーション拡張:email-validator
 from email_validator import EmailNotValidError, validate_email
@@ -58,7 +56,7 @@ def contact_complete():
             session['email'] = email
             session['description'] = description
             return redirect(url_for("contact.create"))
- 
+
         mail = current_app.extensions['mail']
 
         print(current_app.config)

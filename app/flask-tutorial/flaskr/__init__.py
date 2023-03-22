@@ -8,16 +8,29 @@ from flask_mail import (
     Message, Mail
 )
 
+from pathlib import Path
+# [DB]
+# from flask_migrate import Migrate
+# from flask_sqlalchemy import SQLAlchemy
+
+# [DB] インスタンス化
+# db = SQLAlchemy()
+
 mail = Mail()
 
 
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
-    # TODO flask-sqlalchemy,flask-migrateを利用する
+
     app.config.from_mapping(
         SECRET_KEY="dev",
         DATABASE=os.path.join(app.instance_path, "flaskr.sqlite"),
     )
+
+    # [DB]SQLAlchemyとアプリを連携する
+    #db.init_app(app)
+    # [DB]Migrateとアプリを連携する
+    #Migrate(app, db)
 
     if test_config is None:
         # もしインスタンスフォルダにconfig.pyファイルがあれば、
