@@ -1,11 +1,17 @@
 import mysql.connector
 import click
 from flask import current_app, g
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 
 def get_db():
     if 'db' not in g:
         g.db = mysql.connector.connect(
+            pool_name='my_pool',
+            pool_size=16,
+            pool_reset_session=True,
             host=current_app.config['DB_HOST'],
             user=current_app.config['DB_USER'],
             password=current_app.config['DB_PASSWORD'],
@@ -29,12 +35,13 @@ def init_db_command():
     click.echo('Initialized the database.')
 
 
-def init_db():
+def init_db(app):
     db = get_db()
-    with current_app.open_resource('schema.sql') as f:
-        cursor = db.cursor()
-        for statement in f.read().decode('utf8').split(';'):
-            cursor.execute(statement)
+    db.init_app(app)
+    # with current_app.open_resource('schema.sql') as f:
+    #     cursor = db.cursor()
+    #     for statement in f.read().decode('utf8').split(';'):
+    #         cursor.execute(statement)
 
 
 def init_app(app):

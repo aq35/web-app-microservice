@@ -2,10 +2,8 @@ import os
 from flask import Flask
 from flask_mail import Mail
 
-from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 
-db = SQLAlchemy()
 migrate = Migrate()
 mail = Mail()
 
@@ -49,6 +47,7 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    from . import db
     db.init_app(app)
     migrate.init_app(app, db)
 
