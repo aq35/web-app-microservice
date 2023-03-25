@@ -5,27 +5,19 @@
 {% endblock %}
 
 {% block content %}
-<form action="{{ url_for('contact.contact_complete') }}" method="POST" novalidate="novalidate">
-    <table>
-        <tr>
-            <td>ユーザ名</td>
-            <td>
-                <input type="text" name="username" value="{{ session.get('username', '') }}" placeholder="ユーザ名" />
-            </td>
-        </tr>
-        <tr>
-            <td>メールアドレス</td>
-            <td>
-                <input type="text" name="email" value="{{ session.get('email', '') }}" placeholder="メールアドレス" />
-            </td>
-        </tr>
-        <tr>
-            <td>問い合わせ内容</td>
-            <td>
-                <textarea name="description" placeholder="問い合わせ内容">{{  session.get('description', '') }}</textarea>
-            </td>
-        </tr>
-    </table>
-    <input type="submit" value="問い合わせ" />
-</form>
+<form class="google-form" action="{{ url_for('contact.contact_complete') }}" method="POST" novalidate="novalidate">
+    <div class="form-group">
+      <label class="form-label" for="username">ユーザ名</label>
+      <input class="form-input" type="text" name="username" id="username" placeholder="" value="{{ session.get('username', '') }}" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="email">メールアドレス</label>
+      <input class="form-input" type="email" name="email" id="email" placeholder="" value="{{ session.get('email', '') }}" required>
+    </div>
+    <div class="form-group">
+      <label class="form-label" for="description">問い合わせ内容</label>
+      <textarea class="form-input" name="description" id="description" placeholder="" required>{{  session.get('description', '') }}</textarea>
+    </div>
+    <button class="form-button" type="submit">問い合わせ</button>
+  </form>
 {% endblock %}
