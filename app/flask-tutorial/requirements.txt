@@ -1,4 +1,4 @@
-flask==2.0.1
+Flask==2.1.0
 types-Flask
 Flask-Cors>=3.0
 types-Flask-Cors
@@ -15,4 +15,4 @@ flask-mail
 # メールバリデーション拡張:email-validator
 email-validator
 flask-sqlalchemy
-flask-migrate
+Flask-Migrate==3.1.0
