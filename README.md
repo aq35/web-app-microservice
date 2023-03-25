@@ -105,7 +105,7 @@ COPY ./flask-tutorial/ ./
 RUN pip3 install -r requirements.txt
 
 ENV FLASK_APP=flaskr.__init__
-ENV FLASK_ENV=development
+ENV FLASK_DEBUG=1
 
 CMD ["flask", "init-db"]
 # ホストを127.0.0.1にすると、Nigixの可変なIPアドレスに対応できない
@@ -113,7 +113,7 @@ CMD ["flask", "init-db"]
 # * Docker使わない場合は、127.0.0.1を使いましょう。
 CMD ["flask", "run", "--host=0.0.0.0", "--port=5000"]
 #export FLASK_APP=flaskr
-#export FLASK_ENV=development
+#export FLASK_DEBUG=development
 #flask init-db
 #flask run
 

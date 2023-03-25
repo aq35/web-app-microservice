@@ -24,4 +24,10 @@ do
 done
 
 ./sh/libs/docker-exec.sh $APP_CONTAINER_NAME "$ARGS"
-
+# ./sh/flask.sh pip show sqlalchemy
+# ./sh/flask.sh pip show sqlalchemy
+# ./sh/flask.sh pip list
+# ./sh/flask.sh pip install -r requirements.txt
+# ./sh/flask.sh flask db init
+# ./sh/flask.sh flask db migrate
+# ./sh/flask.sh flask db migrate -m "create_users_table"
