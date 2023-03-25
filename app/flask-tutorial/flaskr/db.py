@@ -3,7 +3,8 @@ import sqlite3
 import click
 from flask import current_app, g
 
-# データベースへの接続Connect to the Database
+
+# [db]データベースに接続
 def get_db():
     if 'db' not in g:
         g.db = sqlite3.connect(
@@ -15,6 +16,7 @@ def get_db():
     return g.db
 
 
+# [db]データベースを閉じる
 def close_db(e=None):
     db = g.pop('db', None)
 
@@ -22,6 +24,7 @@ def close_db(e=None):
         db.close()
 
 
+# [db]データベースの初期化
 def init_db():
     db = get_db()
 
@@ -29,6 +32,7 @@ def init_db():
         db.executescript(f.read().decode('utf8'))
 
 
+# [db]データベースの初期化コマンド
 @click.command('init-db')
 def init_db_command():
     """Clear the existing data and create new tables."""
@@ -36,7 +40,7 @@ def init_db_command():
     click.echo('Initialized the database.')
 
 
-# アプリケーションへの登録
+# [db]アプリケーションへの登録
 def init_app(app):
     app.teardown_appcontext(close_db)
     app.cli.add_command(init_db_command)
