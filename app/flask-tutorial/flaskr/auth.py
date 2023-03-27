@@ -6,6 +6,7 @@ from flask import (
 from werkzeug.security import check_password_hash, generate_password_hash
 
 from flaskr.db import get_db
+from flaskr.models import User
 
 from pymysql.err import IntegrityError
 
@@ -18,7 +19,7 @@ def register():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        db = get_db()
+
         error = None
 
         if not username:
@@ -28,12 +29,8 @@ def register():
 
         if error is None:
             try:
-                cursor = db.cursor(dictionary=True)
-                cursor.execute(
-                    "INSERT INTO user (username, password) VALUES (%s, %s)",
-                    (username, generate_password_hash(password)),
-                )
-                db.commit()
+                user = User(username=username, password=password)
+                user.save()
             except IntegrityError:
                 error = f"User {username} is already registered."
             else:

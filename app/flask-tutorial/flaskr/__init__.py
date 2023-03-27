@@ -47,9 +47,10 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from . import db
-    db.init_app(app)
-    migrate.init_app(app, db)
+    # models.pyをFlaskアプリケーションに登録
+    from . import models
+    models.init_app(app)
+    migrate.init_app(app, models)
 
     from . import auth
     app.register_blueprint(auth.bp)
