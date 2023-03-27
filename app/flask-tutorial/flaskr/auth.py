@@ -47,21 +47,18 @@ def login():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        db = get_db()
         error = None
-        user = None
-        with db.cursor(dictionary=True) as cursor:
-            cursor.execute('SELECT * FROM user WHERE username = %s', (username,))
-            user = cursor.fetchone()
+        # Userテーブルから、ユーザー名が引数で与えられたユーザーを取得する
+        user = User.get_user_by_username(username=username).first()
 
         if user is None:
             error = 'Incorrect username.'
-        elif not check_password_hash(user['password'], password):
+        elif not user.check_password(password):
             error = 'Incorrect password.'
 
         if error is None:
             session.clear()
-            session['user_id'] = user['id']
+            session['user_id'] = user.id
             return redirect(url_for('index'))
 
         flash(error)
