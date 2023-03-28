@@ -3,10 +3,10 @@ from werkzeug.security import generate_password_hash
 import click
 from flask.cli import with_appcontext
 from werkzeug.security import check_password_hash
-from typing import List
-from sqlalchemy.orm.query import Query
+from typing import Optional
 
 db = SQLAlchemy()
+
 
 class User(db.Model):
     __tablename__ = 'user'
@@ -26,9 +26,11 @@ class User(db.Model):
     def check_password(self, password):
         return check_password_hash(self.password, password)
 
-    def get_user_by_username(username: str) -> Query:
-        query = User.query.filter_by(username=username)
-        return query
+    def user_by_user_id(id: int) -> Optional['User']:
+        return User.query.filter_by(id=id).first()
+
+    def user_by_username(username: str) -> Optional['User']:
+        return User.query.filter_by(username=username).first()
 
 
 def init_app(app):
@@ -42,4 +44,4 @@ def init_db_command():
     """Clear the existing data and create new tables."""
     db.create_all()
     click.echo('Initialized the database.')
-    
+

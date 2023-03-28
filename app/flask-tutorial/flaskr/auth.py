@@ -3,9 +3,7 @@ import functools
 from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
-from werkzeug.security import check_password_hash, generate_password_hash
 
-from flaskr.db import get_db
 from flaskr.models import User
 
 from pymysql.err import IntegrityError
@@ -49,7 +47,7 @@ def login():
         password = request.form['password']
         error = None
         # Userテーブルから、ユーザー名が引数で与えられたユーザーを取得する
-        user = User.get_user_by_username(username=username).first()
+        user = User.user_by_username(username=username)
 
         if user is None:
             error = 'Incorrect username.'
@@ -80,10 +78,7 @@ def load_logged_in_user():
     if user_id is None:
         g.user = None
     else:
-        db = get_db()
-        cursor = db.cursor(dictionary=True)
-        cursor.execute('SELECT * FROM user WHERE id = %s', (user_id,))
-        g.user = cursor.fetchone()
+        g.user = User.user_by_user_id(user_id)
 
 
 def login_required(view):
