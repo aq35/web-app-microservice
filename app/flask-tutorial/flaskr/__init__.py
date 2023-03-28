@@ -28,6 +28,14 @@ def create_app(test_config=None):
         DB_PASSWORD='password',
         DB_NAME='flask-app'
     )
+
+    # ログ設定を行う
+    from . import flaskr_logging
+    # ログの設定
+    log_path = './logs/flaskr.log'
+    flaskr_logging.log_config(app)
+    flaskr_logging.sqlalchemy_logging_config(log_path)
+
     if test_config is None:
         app.config.from_pyfile("config.py", silent=True)
     else:
