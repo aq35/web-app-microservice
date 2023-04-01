@@ -9,6 +9,9 @@ Python[FW:Flask] を通して、WEBでもデスクトップアプリにでも応
 
 ## Installation
 
+app/flask-tutorial
+.env.exampleから.envを作成してください。
+./
 .env.exampleから.envを作成してください。
 
 Docker(nginx+Flask)で開発環境を構築する

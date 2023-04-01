@@ -28,3 +28,14 @@ WHERE user.id = %(id_1)s
  LIMIT %(param_1)s
 2023-03-28 23:14:09 UTC INFO:sqlalchemy.engine.Engine:[cached since 0.0584s ago] {'id_1': 19, 'param_1': 1}
 2023-03-28 23:14:09 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-01 05:56:37 UTC INFO:sqlalchemy.engine.Engine:SELECT DATABASE()
+2023-04-01 05:56:37 UTC INFO:sqlalchemy.engine.Engine:[raw sql] {}
+2023-04-01 05:56:37 UTC INFO:sqlalchemy.engine.Engine:SELECT @@sql_mode
+2023-04-01 05:56:37 UTC INFO:sqlalchemy.engine.Engine:[raw sql] {}
+2023-04-01 05:56:37 UTC INFO:sqlalchemy.engine.Engine:SELECT @@lower_case_table_names
+2023-04-01 05:56:37 UTC INFO:sqlalchemy.engine.Engine:[raw sql] {}
+2023-04-01 05:56:37 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-01 05:56:37 UTC INFO:sqlalchemy.engine.Engine:SELECT post.id AS post_id, post.author_id AS post_author_id, post.created AS post_created, post.title AS post_title, post.body AS post_body 
+FROM post
+2023-04-01 05:56:37 UTC INFO:sqlalchemy.engine.Engine:[generated in 0.00178s] {}
+2023-04-01 05:56:37 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
