@@ -8,11 +8,11 @@ from api.models.user import User
 
 from pymysql.err import IntegrityError
 
-bp = Blueprint('auth', __name__, url_prefix='/auth')
+auth_router = Blueprint('auth', __name__, url_prefix='/auth')
 
 
 # 登録（Register)
-@bp.route('/register', methods=('GET', 'POST'))
+@auth_router.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
         username = request.form['username']
@@ -40,7 +40,7 @@ def register():
 
 
 # ログイン
-@bp.route('/login', methods=('GET', 'POST'))
+@auth_router.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
         username = request.form['username']
@@ -65,13 +65,13 @@ def login():
 
 
 # ログアウト
-@bp.route('/logout')
+@auth_router.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
 
 
-@bp.before_app_request
+@auth_router.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
 

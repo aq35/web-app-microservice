@@ -46,15 +46,15 @@ def create_app(test_config=None):
     except OSError:
         pass
 
-    from . import auth
-    app.register_blueprint(auth.bp)
+    from .views.auth import auth_router
+    app.register_blueprint(auth_router)
 
-    from . import blog
-    app.register_blueprint(blog.bp)
+    from .views.blog import blog_router
+    app.register_blueprint(blog_router)
     app.add_url_rule("/", endpoint="index")
 
-    from . import contact
-    app.register_blueprint(contact.bp)
+    from .views.contact import contact_router
+    app.register_blueprint(contact_router)
 
     return app
 

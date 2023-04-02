@@ -10,19 +10,19 @@ from flask_mail import Message
 # メールバリデーション拡張:email-validator
 from email_validator import EmailNotValidError, validate_email
 
-from api.auth import login_required
+from .auth import login_required
 
-bp = Blueprint('contact', __name__)
+contact_router = Blueprint('contact', __name__)
 
 
-@bp.route('/contact', methods=('GET', 'POST'))
+@contact_router.route('/contact', methods=('GET', 'POST'))
 @login_required
 def create():
 
     return render_template('contact/create.html')
 
 
-@bp.route("/contact/complete", methods=["GET", "POST"])
+@contact_router.route("/contact/complete", methods=["GET", "POST"])
 @login_required
 def contact_complete():
     if request.method == "POST":
