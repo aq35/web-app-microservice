@@ -4,6 +4,8 @@ WORKDIR app
 
 COPY ./flask-tutorial/ ./
 
+RUN pip3 install --upgrade pip
+
 RUN pip3 install -r requirements.txt
 
 ## python-dotenvによりアプリケーション直下に.envがあればENVを読み込んでくれるようになったため、コメントアウト

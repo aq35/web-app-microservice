@@ -1,6 +1,7 @@
 #!/bin/bash
 #!chmod +x ./sh/flask.sh
 #! ./sh/flask.sh flask
+#! ./sh/flask.sh pip freeze #現在の環境の設定ファイルを書き出し
 
 #!.envファイルの設定値を参照する
 source .env
