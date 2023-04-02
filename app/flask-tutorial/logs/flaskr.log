@@ -50,3 +50,19 @@ FROM post
 FROM post
 2023-04-02 04:48:59 UTC INFO:sqlalchemy.engine.Engine:[generated in 0.00068s] {}
 2023-04-02 04:48:59 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-02 04:56:39 UTC INFO:sqlalchemy.engine.Engine:SELECT DATABASE()
+2023-04-02 04:56:39 UTC INFO:sqlalchemy.engine.Engine:[raw sql] {}
+2023-04-02 04:56:39 UTC INFO:sqlalchemy.engine.Engine:SELECT @@sql_mode
+2023-04-02 04:56:39 UTC INFO:sqlalchemy.engine.Engine:[raw sql] {}
+2023-04-02 04:56:39 UTC INFO:sqlalchemy.engine.Engine:SELECT @@lower_case_table_names
+2023-04-02 04:56:39 UTC INFO:sqlalchemy.engine.Engine:[raw sql] {}
+2023-04-02 04:56:39 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-02 04:56:39 UTC INFO:sqlalchemy.engine.Engine:SELECT post.id AS post_id, post.author_id AS post_author_id, post.created AS post_created, post.title AS post_title, post.body AS post_body 
+FROM post
+2023-04-02 04:56:39 UTC INFO:sqlalchemy.engine.Engine:[generated in 0.00095s] {}
+2023-04-02 04:56:39 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-02 04:56:40 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-02 04:56:40 UTC INFO:sqlalchemy.engine.Engine:SELECT post.id AS post_id, post.author_id AS post_author_id, post.created AS post_created, post.title AS post_title, post.body AS post_body 
+FROM post
+2023-04-02 04:56:40 UTC INFO:sqlalchemy.engine.Engine:[cached since 0.6699s ago] {}
+2023-04-02 04:56:40 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK

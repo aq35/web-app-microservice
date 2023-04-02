@@ -4,6 +4,8 @@ from flask_mail import Mail
 
 from flask_migrate import Migrate
 
+import config
+
 migrate = Migrate()
 mail = Mail()
 
@@ -12,18 +14,7 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.secret_key = 'my_secret_key'
 
-    app.config.update(
-        SQLALCHEMY_DATABASE_URI='mysql+pymysql://root:password@mysql/flask-app?charset=utf8mb4',
-        SQLALCHEMY_TRACK_MODIFICATIONS=False,
-        SQLALCHEMY_ENGINE_OPTIONS={
-            'pool_pre_ping': True,
-            'pool_recycle': 3600,
-        },
-        DB_HOST='mysql',
-        DB_USER='root',
-        DB_PASSWORD='password',
-        DB_NAME='flask-app',
-    )
+    app.config.from_object('config.Config')
 
     # ログ設定を行う
     from . import flaskr_logging
