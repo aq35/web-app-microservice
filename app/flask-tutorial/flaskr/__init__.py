@@ -3,8 +3,9 @@ from flask import Flask
 from flask_mail import Mail
 
 from flask_migrate import Migrate
-
+from flaskr.database import db
 import config
+
 
 migrate = Migrate()
 mail = Mail()
@@ -15,6 +16,7 @@ def create_app(test_config=None):
     app.secret_key = 'my_secret_key'
 
     app.config.from_object('config.Config')
+    db.init_app(app)
 
     # ログ設定を行う
     from . import flaskr_logging
@@ -43,11 +45,6 @@ def create_app(test_config=None):
         os.makedirs(app.instance_path)
     except OSError:
         pass
-
-    # models.pyをFlaskアプリケーションに登録
-    from . import models
-    models.init_app(app)
-    migrate.init_app(app, models)
 
     from . import auth
     app.register_blueprint(auth.bp)

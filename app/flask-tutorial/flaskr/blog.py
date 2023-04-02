@@ -4,7 +4,7 @@ from flask import (
 from werkzeug.exceptions import abort
 
 from flaskr.auth import login_required
-from flaskr.models import Post
+from flaskr.models.models import Post
 
 bp = Blueprint('blog', __name__)
 
