@@ -69,3 +69,6 @@ def create_app(test_config=None):
     app.register_blueprint(contact.bp)
 
     return app
+
+
+app = create_app()

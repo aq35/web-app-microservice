@@ -1,6 +1,6 @@
 #!/bin/bash
 #!chmod +x dc.sh
-#!./dc.sh 
+#!./sh/dc.sh 
 echo "DockerComposeを操作しますか？"
 echo "1. まとめてコンテナ起動したい"
 echo "2. まとめてコンテナビルドしたい(ビルド時にキャッシュは使用しない)"
