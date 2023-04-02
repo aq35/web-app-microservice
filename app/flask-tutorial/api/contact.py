@@ -10,7 +10,7 @@ from flask_mail import Message
 # メールバリデーション拡張:email-validator
 from email_validator import EmailNotValidError, validate_email
 
-from flaskr.auth import login_required
+from api.auth import login_required
 
 bp = Blueprint('contact', __name__)
 

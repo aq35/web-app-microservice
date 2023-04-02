@@ -4,7 +4,7 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, session, url_for
 )
 
-from flaskr.models.user import User
+from api.models.user import User
 
 from pymysql.err import IntegrityError
 

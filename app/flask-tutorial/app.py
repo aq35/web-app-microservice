@@ -1,4 +1,4 @@
-from flaskr import app
+from api import app
 
 
 # 起動ファイル

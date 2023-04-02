@@ -3,7 +3,7 @@ from flask import Flask
 from flask_mail import Mail
 
 from flask_migrate import Migrate
-from flaskr.database import db
+from api.database import db
 import config
 
 
@@ -21,7 +21,7 @@ def create_app(test_config=None):
     # ログ設定を行う
     from . import flaskr_logging
     # ログの設定
-    log_path = './logs/flaskr.log'
+    log_path = './logs/api.log'
     flaskr_logging.log_config(app)
     flaskr_logging.sqlalchemy_logging_config(log_path)
 

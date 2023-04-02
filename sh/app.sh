@@ -21,7 +21,7 @@ case $choice in
     ./sh/libs/docker-exec.sh $APP_CONTAINER_NAME ls
     ;; 
   4)
-    ./sh/libs/docker-exec.sh $APP_CONTAINER_NAME flask --app flaskr run --debug
+    ./sh/libs/docker-exec.sh $APP_CONTAINER_NAME flask --app api run --debug
     ;;        
   *)
     echo "Invalid choice"

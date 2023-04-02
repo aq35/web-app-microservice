@@ -1,6 +1,6 @@
 import click
 from flask.cli import with_appcontext
-from flaskr.database import db
+from api.database import db
 
 
 class Post(db.Model):
@@ -37,7 +37,7 @@ class Post(db.Model):
 
     def __repr__(self):
         return '<Post %r>' % self.title
-    
+
     @classmethod
     def create(cls, title, body, author_id):
         post = cls(title=title, body=body, author_id=author_id)

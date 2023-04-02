@@ -1,7 +1,7 @@
 from werkzeug.security import generate_password_hash
 from werkzeug.security import check_password_hash
 from typing import Optional
-from flaskr.database import db
+from api.database import db
 
 
 class User(db.Model):
