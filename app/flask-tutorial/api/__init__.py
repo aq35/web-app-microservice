@@ -15,8 +15,9 @@ def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.secret_key = 'my_secret_key'
 
-    app.config.from_object('config.Config')
+    app.config.from_object(config.Config)
     db.init_app(app)
+    app.config.update(config.Config.MAIL)
 
     # ログ設定を行う
     from . import flaskr_logging
@@ -30,14 +31,7 @@ def create_app(test_config=None):
     else:
         app.config.from_mapping(test_config)
 
-    app.config.update({
-        "MAIL_SERVER": os.environ.get("MAIL_SERVER"),
-        "MAIL_PORT": os.environ.get("MAIL_PORT"),
-        "MAIL_USE_TLS": os.environ.get("MAIL_USE_TLS"),
-        "MAIL_USERNAME": os.environ.get("MAIL_USERNAME"),
-        "MAIL_PASSWORD": os.environ.get("MAIL_PASSWORD"),
-        "MAIL_DEFAULT_SENDER": os.environ.get("MAIL_DEFAULT_SENDER"),
-    })
+
 
     mail.init_app(app)
 
