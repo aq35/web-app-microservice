@@ -21,7 +21,6 @@ def create_app(test_config=None):
 
     # ログ設定を行う
     from . import flaskr_logging
-    # ログの設定
     log_path = './logs/api.log'
     flaskr_logging.log_config(app)
     flaskr_logging.sqlalchemy_logging_config(log_path)
@@ -30,8 +29,6 @@ def create_app(test_config=None):
         app.config.from_pyfile("config.py", silent=True)
     else:
         app.config.from_mapping(test_config)
-
-
 
     mail.init_app(app)
 
