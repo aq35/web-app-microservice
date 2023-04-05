@@ -37,7 +37,6 @@ def error_handler(err):
 
 # 登録（Register)
 @auth_router.route('/register', methods=['POST'])
-@csrf_protect
 def register_api():
     data = request.get_json()
     form = RegistrationForm(data=data)

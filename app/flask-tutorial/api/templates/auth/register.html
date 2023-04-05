@@ -64,6 +64,7 @@
   const form = document.querySelector("#login-form");
 
   form.addEventListener("submit", async (event) => {
+    event.preventDefault();
     const errorMessageList = document.getElementById("error-message-list");
     errorMessageList.innerHTML = ""; // リストを空にする
     const errorElements = document.querySelectorAll(".error-message");
@@ -72,8 +73,8 @@
       errorElement.innerHTML = " ";
       errorElement.classList.remove("error-message", "peer-invalid:visible", "text-pink-600", "text-sm");
     });
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    event.preventDefault();
+    const csrfToken = document.querySelector('[name="csrf-token"]')?.value;
+    
     const formData = new FormData(form);
     const data = {
       username: formData.get("username"),
