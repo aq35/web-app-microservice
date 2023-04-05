@@ -24,3 +24,4 @@ numba==0.56.4
 pytz==2023.3
 WTForms==3.0.1
 Flask-WTF==1.1.1
+Flask-SocketIO==5.3.3

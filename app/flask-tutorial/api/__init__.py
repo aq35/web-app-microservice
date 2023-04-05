@@ -14,7 +14,6 @@ mail = Mail()
 def create_app(test_config=None):
     app = Flask(__name__, instance_relative_config=True)
     app.secret_key = 'my_secret_key'
-
     app.config.from_object(config.Config)
     db.init_app(app)
     app.config.update(config.Config.MAIL)
