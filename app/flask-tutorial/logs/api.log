@@ -662,3 +662,100 @@ WHERE user.username = %(username_1)s
  LIMIT %(param_1)s
 2023-04-05 21:18:47 UTC INFO:sqlalchemy.engine.Engine:[generated in 0.00127s] {'username_1': 'sa', 'param_1': 1}
 2023-04-05 21:18:47 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:06 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:06 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:06 UTC INFO:sqlalchemy.engine.Engine:[cached since 18.96s ago] {'username_1': 'fd', 'param_1': 1}
+2023-04-05 21:19:06 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:08 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:08 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:08 UTC INFO:sqlalchemy.engine.Engine:[cached since 20.97s ago] {'username_1': 'dfg', 'param_1': 1}
+2023-04-05 21:19:08 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:10 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:10 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:10 UTC INFO:sqlalchemy.engine.Engine:[cached since 22.37s ago] {'username_1': 'gdf', 'param_1': 1}
+2023-04-05 21:19:10 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:10 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:10 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:10 UTC INFO:sqlalchemy.engine.Engine:[cached since 22.88s ago] {'username_1': 'gdf', 'param_1': 1}
+2023-04-05 21:19:10 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:11 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:11 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:11 UTC INFO:sqlalchemy.engine.Engine:[cached since 23.27s ago] {'username_1': 'gdf', 'param_1': 1}
+2023-04-05 21:19:11 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:13 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:13 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:13 UTC INFO:sqlalchemy.engine.Engine:[cached since 25.15s ago] {'username_1': 'fgdfg', 'param_1': 1}
+2023-04-05 21:19:13 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:15 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:15 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:15 UTC INFO:sqlalchemy.engine.Engine:[cached since 27.32s ago] {'username_1': 'fggdfg', 'param_1': 1}
+2023-04-05 21:19:15 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:24 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:24 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:24 UTC INFO:sqlalchemy.engine.Engine:[cached since 36.52s ago] {'username_1': 'd', 'param_1': 1}
+2023-04-05 21:19:24 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:26 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:26 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:26 UTC INFO:sqlalchemy.engine.Engine:[cached since 38.29s ago] {'username_1': 'd', 'param_1': 1}
+2023-04-05 21:19:26 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:27 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:27 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:27 UTC INFO:sqlalchemy.engine.Engine:[cached since 39.33s ago] {'username_1': 'd', 'param_1': 1}
+2023-04-05 21:19:27 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:19:49 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:19:49 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:19:49 UTC INFO:sqlalchemy.engine.Engine:[cached since 61.85s ago] {'username_1': 'aaaaaaaa', 'param_1': 1}
+2023-04-05 21:19:49 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:27:57 UTC INFO:sqlalchemy.engine.Engine:SELECT DATABASE()
+2023-04-05 21:27:57 UTC INFO:sqlalchemy.engine.Engine:[raw sql] {}
+2023-04-05 21:27:57 UTC INFO:sqlalchemy.engine.Engine:SELECT @@sql_mode
+2023-04-05 21:27:57 UTC INFO:sqlalchemy.engine.Engine:[raw sql] {}
+2023-04-05 21:27:57 UTC INFO:sqlalchemy.engine.Engine:SELECT @@lower_case_table_names
+2023-04-05 21:27:57 UTC INFO:sqlalchemy.engine.Engine:[raw sql] {}
+2023-04-05 21:27:57 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:27:57 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:27:57 UTC INFO:sqlalchemy.engine.Engine:[generated in 0.00100s] {'username_1': 'aqwsdeasd', 'param_1': 1}
+2023-04-05 21:27:57 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK
+2023-04-05 21:28:00 UTC INFO:sqlalchemy.engine.Engine:BEGIN (implicit)
+2023-04-05 21:28:00 UTC INFO:sqlalchemy.engine.Engine:SELECT user.id AS user_id, user.username AS user_username, user.password AS user_password 
+FROM user 
+WHERE user.username = %(username_1)s 
+ LIMIT %(param_1)s
+2023-04-05 21:28:00 UTC INFO:sqlalchemy.engine.Engine:[cached since 3.09s ago] {'username_1': 'aqwsdeasdas', 'param_1': 1}
+2023-04-05 21:28:00 UTC INFO:sqlalchemy.engine.Engine:ROLLBACK

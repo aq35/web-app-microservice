@@ -6,6 +6,7 @@ from flask import (
 
 from api.models.user import User
 from pymysql.err import IntegrityError
+from flask_wtf.csrf import generate_csrf
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField
 from wtforms.validators import InputRequired, Length, ValidationError
@@ -36,6 +37,7 @@ def error_handler(err):
 
 # 登録（Register)
 @auth_router.route('/register', methods=['POST'])
+@csrf_protect
 def register_api():
     data = request.get_json()
     form = RegistrationForm(data=data)

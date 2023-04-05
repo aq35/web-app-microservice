@@ -2,6 +2,7 @@
 <h1>{% block title %}会員登録{% endblock %}</h1>
 {% endblock %} {% block content %}
 <form id="login-form">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
   <label class="block">
     <span
       class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
@@ -71,12 +72,13 @@
       errorElement.innerHTML = " ";
       errorElement.classList.remove("error-message", "peer-invalid:visible", "text-pink-600", "text-sm");
     });
-
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
     event.preventDefault();
     const formData = new FormData(form);
     const data = {
       username: formData.get("username"),
       password: formData.get("password"),
+      csrf_token:csrfToken
     };
 
     try {
@@ -89,7 +91,7 @@
       });
 
       const responseData = await response.json();
-      if (response.ok) {
+      if (response.success_message) {
         console.log(response);
         // ログイン成功時の処理
       } else {

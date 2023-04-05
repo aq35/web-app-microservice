@@ -5,7 +5,7 @@ from flask_mail import Mail
 from flask_migrate import Migrate
 from api.database import db
 import config
-
+from flask_wtf.csrf import generate_csrf
 
 migrate = Migrate()
 mail = Mail()
@@ -51,3 +51,8 @@ def create_app(test_config=None):
 
 
 app = create_app()
+
+
+@app.context_processor
+def csrf_context():
+    return dict(csrf_token=generate_csrf())
