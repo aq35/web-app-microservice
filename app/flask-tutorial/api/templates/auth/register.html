@@ -1,80 +1,142 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}会員登録{% endblock %}</h1>
+{% endblock %} {% block content %}
+<form id="login-form">
+  <label class="block">
+    <span
+      class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+    >
+      ユーザー名
+    </span>
+    <input
+      id="username"
+      type="username"
+      name="username"
+      class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+    />
+    <p class="js-error-message mt-1 h-3"></p>
+  </label>
 
-{% block header %}
-  <h1>{% block title %}会員登録{% endblock %}</h1>
-{% endblock %}
+  <label class="block mt-4">
+    <span
+      class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+    >
+      メールアドレス
+    </span>
+    <input
+      id="email"
+      type="email"
+      name="email"
+      class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+    />
+    <p class="js-error-message mt-1 h-3"></p>
+  </label>
 
-{% block content %}
-  <form id="login-form">
-    <label class="block">
-      <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
-        ユーザー名
-      </span>
-      <input id="username" type="username" name="username" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" required/>
-      <p class="mt-1 invisible peer-invalid:visible text-pink-600 text-sm">
-        エラーメッセージ
-      </p>
-    </label>
+  <label class="block mt-4">
+    <span
+      class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700"
+    >
+      パスワード
+    </span>
+    <input
+      id="password"
+      type="password"
+      name="password"
+      class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1"
+    />
+    <p class="js-error-message mt-1 h-3"></p>
+  </label>
 
-    <label class="block mt-4">
-      <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
-        メールアドレス
-      </span>
-      <input id="email" type="email" name="email" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" required/>
-      <p class="mt-1 invisible peer-invalid:visible text-pink-600 text-sm">
-        エラーメッセージ
-      </p>
-    </label>
-
-    <label class="block mt-4">
-      <span class="after:content-['*'] after:ml-0.5 after:text-red-500 block text-sm font-medium text-slate-700">
-        パスワード
-      </span>
-      <input id="password" type="password" name="password" class="mt-1 px-3 py-2 bg-white border shadow-sm border-slate-300 placeholder-slate-400 focus:outline-none focus:border-sky-500 focus:ring-sky-500 block w-full rounded-md sm:text-sm focus:ring-1" required/>
-      <p class="mt-1 invisible peer-invalid:visible text-pink-600 text-sm">
-        エラーメッセージ
-      </p>
-    </label>
-
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+  <label class="block mt-4">
+    <button
+      type="submit"
+      class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+    >
       会員登録
     </button>
-    
-    <div id="error-message"></div>
-  </form>
-  <script>
-    const register_api = "{{ url_for('auth.register_api') }}";
-    const form = document.querySelector('#login-form');
-    const errorMessage = document.querySelector('#error-message');
+  </label>
+  <ul id="error-message-list" class="list-none"></ul>
+  <ul id="error-list" class="list-none"></ul>
+</form>
+<script>
+  const register_api = "{{ url_for('auth.register_api') }}";
+  const form = document.querySelector("#login-form");
 
-    form.addEventListener('submit', async (event) => {
-      event.preventDefault();
-      const formData = new FormData(form);
-      const data = {
-        username: formData.get('username'),
-        password: formData.get('password')
-      };
+  form.addEventListener("submit", async (event) => {
+    const errorMessageList = document.getElementById("error-message-list");
+    errorMessageList.innerHTML = ""; // リストを空にする
+    const errorElements = document.querySelectorAll(".error-message");
+    // 各エラーメッセージ要素のクラスリストから該当するクラスを削除する
+    errorElements.forEach((errorElement) => {
+      errorElement.innerHTML = " ";
+      errorElement.classList.remove("error-message", "peer-invalid:visible", "text-pink-600", "text-sm");
+    });
 
-      try {
-        const response = await fetch(register_api, {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify(data)
+    event.preventDefault();
+    const formData = new FormData(form);
+    const data = {
+      username: formData.get("username"),
+      password: formData.get("password"),
+    };
+
+    try {
+      const response = await fetch(register_api, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+      if (response.ok) {
+        console.log(response);
+        // ログイン成功時の処理
+      } else {
+        // エラーメッセージを表示
+        responseData.error_messages?.forEach(function (error) {
+          const li = document.createElement("li");
+          li.textContent = error;
+          errorMessageList.appendChild(li);
         });
 
-        const responseData = await response.json();
-        if (response.ok) {
-          console.log(response);
-          // ログイン成功時の処理
-        } else {
-          // エラーメッセージを表示
-          errorMessage.textContent = responseData.error;
+        // 各入力項目に対して、エラーメッセージを表示する
+        // バリデーション エラーメッセージを表示
+        if (responseData.errors) {
+          const errors = responseData.errors;
+          Object.keys(errors).forEach((fieldName) => {
+            console.log(fieldName);
+            const field = document.querySelector(`[name="${fieldName}"]`);
+            if (!field) {
+              return;
+            }
+            const errorMessages = errors[fieldName];
+            const errorElement =
+              field.parentNode.querySelector(".js-error-message");
+              errorElement.classList.add(
+                "error-message",
+                "peer-invalid:visible",
+                "text-pink-600",
+                "text-sm"
+              );
+            if (errorElement) {
+              // 既にエラーメッセージ要素が存在する場合、テキストを変更する
+              errorElement.textContent = errorMessages.join(", ");
+            } else {
+              // エラーメッセージ要素を作成して、テキストを設定する
+              const errorElement = document.createElement("p");
+              const errorMessageText = document.createTextNode(
+                errorMessages.join(", ")
+              );
+              errorElement.appendChild(errorMessageText);
+              field.parentNode.appendChild(errorElement);
+            }
+          });
         }
-      } catch (error) {
-        console.error(error);
       }
-    });
-  </script>
+    } catch (error) {
+      console.log(error);
+    }
+  });
+</script>
 {% endblock %}

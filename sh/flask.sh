@@ -28,6 +28,10 @@ done
 # ./sh/flask.sh pip show sqlalchemy
 # ./sh/flask.sh pip show sqlalchemy
 # ./sh/flask.sh pip list
+# pip の　WTFormsがあるか調べる。
+# ./sh/flask.sh pip list | grep WTForms
+# pip の　WTFormsの詳細情報を調べる。
+# ./sh/flask.sh pip show WTForms
 # ./sh/flask.sh pip install -r requirements.txt
 # ./sh/flask.sh flask db init
 # ./sh/flask.sh flask db migrate

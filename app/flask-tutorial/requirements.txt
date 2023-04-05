@@ -22,3 +22,5 @@ cryptography==40.0.1
 mysql-connector-python==8.0.32
 numba==0.56.4
 pytz==2023.3
+WTForms==3.0.1
+Flask-WTF==1.1.1
